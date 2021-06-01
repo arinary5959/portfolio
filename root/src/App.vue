@@ -18,7 +18,7 @@ export default {
     '$route'(to, from){
       console.log(from)
       console.log(to)
-      // console.log(`APP라우트와치 ${this.$route.path}`)
+      console.log(`APP라우트와치 ${this.$route.path}`)
       this.$store.state.crrPath = this.$route.path
 // mounted 될 때마다canvasWork가 실행, /home시 리로드하는 방식으로 우회함.
       // if((from.path == '/work' || from.path == '/about') && to.path == '/home'){
@@ -26,7 +26,7 @@ export default {
       //   // console.log('home으로 이동했다')
       //   window.location.reload()
       // }
-      console.log(this.$store.state.flowColor)
+      // console.log(this.$store.state.flowColor)
     // window.onpageshow = function(event) {
     //   console.log('페이지쇼')
     //   console.log(event.persisted)

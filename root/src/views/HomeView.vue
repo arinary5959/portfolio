@@ -38,9 +38,9 @@ export default {
           // console.log(this.$store.state.flowColor)
           // 애니메이션으로 인한 버벅거림 - 임시방편으로 리로드함 21.3.31
           if(to.path == '/work'){
-            window.location.href='http://localhost:8080/work';
+            window.location.href='https://https://leehj.netlify.app/work';
           }else if(to.path == '/about'){
-            window.location.href='http://localhost:8080/about';
+            window.location.href='https://https://leehj.netlify.app/work';
           }
         }
       }
