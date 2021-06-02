@@ -85,7 +85,7 @@ export const store = createStore({
                 href:'https://arinary5959.github.io/calendar/calendar.html',
             },
             {
-                name: 'Calculator',
+                name: 'Calculator 구현중',
                 description: '계산기 UI 구현. 기본 기능을 갖춘 계산기입니다.',
                 contribution: '퍼블리싱 100%',
                 tech:'HTML, CSS, Javascript',
