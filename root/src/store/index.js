@@ -48,7 +48,7 @@ export const store = createStore({
                 contribution: '퍼블리싱 100%',
                 tech:'Vue, Firebase, HTML, CSS, Javascript',
                 imgsrc: require('../assets/workitemvisual/todolist.png'),
-                href:'./workItems/calendar/calendar.html',
+                href:'https://tasklisst.netlify.app',
             },
             // {
             //     name: 'MusicPlayList',

@@ -1,19 +1,25 @@
 <template>
   <div class="about-view-wrap">
     <div ref="gnbmenuwrap" class="gnbmenu_wrap">
-      <!-- <toolbar-type2></toolbar-type2> -->
-      <div class="gnbmenu">
+      <div class="gnbmenu_icon_wrap">
         <div class="bar"></div>
-        <nav class="gnbmenu">
+        <div class="gnbmenu_icon" v-on:click="menuClick">
           <div class="gnbbar"></div>
           <div class="gnbbar"></div>
           <div class="gnbbar"></div>
-        </nav>
+        </div>
         <div class="bar"></div>
       </div>
       <div class="logo">
         <h1>HJLEE</h1>
       </div>
+      <nav class="gnbmenu" ref="gnb_Menu">
+        <ul>
+          <li><router-link to="/home"><h3>HOME</h3></router-link></li>
+          <li><router-link to="/work"><h3>WORKS</h3></router-link></li>
+          <li><router-link to="/about"><h3>ABOUT</h3></router-link></li>
+        </ul>
+      </nav>
     </div>
     <section class="primary_1">
       <div ref="color_paint" class="color_paint">
@@ -55,7 +61,6 @@
 </template>
 
 <script>
-// import ToolbarType2 from '../components/ToolbarType2.vue'
 export default {
   mounted(){
     // console.log(1)
@@ -80,9 +85,20 @@ export default {
     //     gnbMenuWrap.classList.add('active')
     //   }, 1500)
   },
-  // components: {
-  //   'toolbar-type2': ToolbarType2,
-  // },
+  methods:{
+    menuClick(e){
+      console.log(e)
+      console.log(this.$refs.gnb_Menu)
+      if(!e.target.classList.contains('gnbmenu_icon'))return;
+      if(e.target.classList.contains('on')){
+        e.target.classList.remove('on')
+        this.$refs.gnb_Menu.classList.remove('on')
+      }else{
+        e.target.classList.add('on')
+        this.$refs.gnb_Menu.classList.add('on')
+      }
+    }
+  }
 }
 </script>
 
@@ -105,7 +121,6 @@ export default {
 .gnbmenu_wrap{
   width: 4%;
   min-width: 75px;
-  min-height: 900px;
   /* height: 100vh; */
   position: fixed;
   z-index: 10000;
@@ -115,7 +130,7 @@ export default {
   /* border:1px solid red; */
   background-color:white;
 }
-.gnbmenu_wrap > .gnbmenu{
+.gnbmenu_wrap > .gnbmenu_icon_wrap{
   /* border:1px solid green; */
   position: absolute;
   top:50%;
@@ -123,18 +138,18 @@ export default {
   left: 0;
   transform: translateY(-50%);  
 }
-.gnbmenu_wrap > .gnbmenu > .bar{
+.gnbmenu_wrap > .gnbmenu_icon_wrap > .bar{
   margin: 0 auto;
   width: 1px;
   height: 100px;
   background-color: var(--navColor);
   opacity: 0.4;
 }
-.gnbmenu_wrap > .gnbmenu > .bar:first-child{
+.gnbmenu_wrap > .gnbmenu_icon_wrap > .bar:first-child{
   /* margin-top: 180px; */
   margin-bottom: 40px;
 }
-.gnbmenu_wrap > .gnbmenu > .bar:last-child{
+.gnbmenu_wrap > .gnbmenu_icon_wrap > .bar:last-child{
   margin-top: calc(40px + 38px + 40px);
 }
 section.primary_1{
@@ -144,34 +159,81 @@ section.primary_1{
   /* border:1px solid red; */
   position: relative;
 }
-.gnbmenu_wrap > .gnbmenu > nav:after {
+.gnbmenu_wrap > .gnbmenu_icon_wrap > div.gnbmenu_icon:after {
   content:"";
   display: block;
   clear: both;
 }
-.gnbmenu_wrap > .gnbmenu > nav{
+.gnbmenu_wrap > .gnbmenu_icon_wrap > div.gnbmenu_icon{
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  cursor: pointer;
 }
-.gnbmenu_wrap > .gnbmenu > nav > .gnbbar{
+.gnbmenu_wrap > .gnbmenu_icon_wrap > div.gnbmenu_icon > .gnbbar{
   /* width: 1px; */
   height: 38px;
   float: left;
-  border-left:1px solid var(--navColor);
+  border-left: 2px solid var(--navColor);
   /* background-color: var(--navColor); */
   /* opacity: 0.8; */
+  pointer-events: none;
 }
-.gnbmenu_wrap > .gnbmenu > nav > .gnbbar:nth-child(2){
-  /* border-left:2px solid var(--navColor); */
+.gnbmenu_wrap > .gnbmenu_icon_wrap > div.gnbmenu_icon > .gnbbar:nth-child(2){
+  border-left: 1px solid var(--navColor);
   margin: 0 8px;
   /* opacity: 1; */
 }
-.gnbmenu_wrap > .gnbmenu > nav > .gnbbar:nth-child(3){
-  border-left:2px solid var(--navColor);
+.gnbmenu_wrap > .gnbmenu_icon_wrap > div.gnbmenu_icon > .gnbbar:nth-child(3){
+  /* border-left:2px solid var(--navColor); */
   /* margin: 0 8px; */
   /* opacity: 1; */
 }
+.gnbmenu_wrap > .gnbmenu_icon_wrap > div.gnbmenu_icon.on > .gnbbar:nth-child(2){
+  /* border-left:2px solid var(--navColor); */
+  margin: 0 8px;
+  /* opacity: 1; */
+  display: none;
+}
+.gnbmenu_wrap > .gnbmenu_icon_wrap > div.gnbmenu_icon.on > .gnbbar:nth-child(1){
+  /* border-left: 2px solid var(--navColor); */
+  transform-origin: center;
+  transform: rotate(-45deg);
+  transition: all 0.5s ease-in-out;
+}
+.gnbmenu_wrap > .gnbmenu_icon_wrap > div.gnbmenu_icon.on > .gnbbar:nth-child(3){
+  transform-origin: center;
+  transform: rotate(45deg);
+  transition: all 0.5s ease-in-out;
+}
+.gnbmenu_wrap > nav{
+  width: 100px;
+  max-width: 0px;
+  height: 100vh;
+  /* border: 1px solid green; */
+  background-color: rgba(0, 0, 0, 0.05);
+  position: absolute;
+  right: 100%;
+  transition: max-width 1s ease-in-out;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.gnbmenu_wrap > nav.on{
+  max-width: 100px;
+}
+.gnbmenu_wrap > nav > ul{
+  min-width: 100px
+  /* border: 1px solid green; */
+}
+.gnbmenu_wrap > nav > ul > li{
+  font-size: 2rem;
+  text-align: center;
+}
+.gnbmenu_wrap > nav > ul > li:nth-child(2){
+  margin: 100px auto;
+}
+
 .gnbmenu_wrap > .logo{
   position: absolute;
   top: 80%;
@@ -205,8 +267,8 @@ section.primary_1{
   transition: all 1.5s ease-in-out;
   opacity: .1;
 }
-.color_col_bottom_1{
-}
+/* .color_col_bottom_1{
+} */
 .color_paint > .color_col_top.max.top_to_bottom{
    transform: translateY(100vh);
 }
