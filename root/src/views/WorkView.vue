@@ -24,6 +24,9 @@
                   <strong>KaKao.Corp</strong>
                     <!-- <router-link to="/work">KaKao.CORP</router-link> -->
                 </li>
+                <li>
+                  <strong>Naver.Corp</strong>
+                </li>
               </ul>
           </div>
           </div>
@@ -33,11 +36,12 @@
             </div>
             <div class="quickmenu_text">
               <h4>Toy Project</h4>
-              <p>:개인 프로젝트 &amp; 팀 프로젝트</p>
+              <!-- <p>:개인 프로젝트 &amp; 팀 프로젝트</p> -->
+              <p>:개인 프로젝트</p>
               <span>:Vue, API, Html5, Css3, Javascript</span>
               <ul class="quickmenu_list">
                 <li>
-                  <strong>Weather</strong>
+                  <strong>Weather_오류수정중</strong>
                   <!-- <router-link to="/work">Starbucks</router-link> -->
                 </li>
                 <li>
@@ -49,7 +53,7 @@
                     <!-- <router-link to="/work">KaKao.CORP</router-link> -->
                 </li>
                 <!-- <li>
-                  <strong>MapScape-</strong>
+                  <strong>MyPlayRecord</strong>
                 </li> -->
               </ul>
             </div>
@@ -59,8 +63,8 @@
               <img src="../assets/WorkIcon/uicodig_color.png" alt="">
             </div>
             <div class="quickmenu_text">
-              <h4>UI Coding</h4>
-              <p>:UI 기능 구현</p>
+              <h4>Play With Code</h4>
+              <p>:기능 구현</p>
               <span>:Vue, Html5, Css3, Javascript </span>
               <ul class="quickmenu_list">
                 <li>
@@ -74,6 +78,9 @@
                 <li>
                   <strong>Calendar</strong>
                   <!-- <router-link to="/work">KaKao.CORP</router-link> -->
+                </li>
+                <li>
+                  <strong>Calculator_구현중</strong>
                 </li>
               </ul>
             </div>
