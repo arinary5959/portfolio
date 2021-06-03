@@ -36,11 +36,11 @@ export const store = createStore({
         projectItems:[
             {
                 name: 'Weather',
-                description: '날씨 정보 제공 웹',
+                description: '날씨 정보 제공 웹, 배포 후 오류 발견 수정중',
                 contribution: '퍼블리싱 100%',
                 tech:'Vue, API, HTML, CSS, Javascript',
                 imgsrc: require('../assets/workitemvisual/weather.jpg'),
-                href:'./workItems/calendar/calendar.html',
+                href:'https://arinary5959.github.io/starbucks/index.html',
             },
             {
                 name: 'ToDoList',
