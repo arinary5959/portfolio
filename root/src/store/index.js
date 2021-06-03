@@ -40,7 +40,7 @@ export const store = createStore({
                 contribution: '퍼블리싱 100%',
                 tech:'Vue, API, HTML, CSS, Javascript',
                 imgsrc: require('../assets/workitemvisual/weather.jpg'),
-                href:'https://arinary5959.github.io/starbucks/index.html',
+                href:'https://arinary5959.github.io/weather/index.html',
             },
             {
                 name: 'ToDoList',
