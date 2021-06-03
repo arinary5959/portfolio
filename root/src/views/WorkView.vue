@@ -11,7 +11,7 @@
               <h4>Clone Coding</h4>
               <p>:웹사이트 클론 코딩</p>
               <span>:Html5, Css3, Javascript</span>
-              <ul class="quickmenu_list">
+              <ul class="quickmenu_list" v-on:click="quickmenuClick">
                 <li>
                   <strong>Starbucks</strong>
                   <!-- <router-link to="/work">Starbucks</router-link> -->
@@ -39,9 +39,9 @@
               <!-- <p>:개인 프로젝트 &amp; 팀 프로젝트</p> -->
               <p>:개인 프로젝트</p>
               <span>:Vue, API, Html5, Css3, Javascript</span>
-              <ul class="quickmenu_list">
+              <ul class="quickmenu_list" v-on:click="quickmenuClick">
                 <li>
-                  <strong>Weather_오류수정중</strong>
+                  <strong>Weather</strong>
                   <!-- <router-link to="/work">Starbucks</router-link> -->
                 </li>
                 <li>
@@ -66,7 +66,7 @@
               <h4>Play With Code</h4>
               <p>:기능 구현</p>
               <span>:Vue, Html5, Css3, Javascript </span>
-              <ul class="quickmenu_list">
+              <ul class="quickmenu_list" v-on:click="quickmenuClick">
                 <li>
                   <strong>H-Slider</strong>
                   <!-- <router-link to="/work">Starbucks</router-link> -->
@@ -88,17 +88,20 @@
         </div>
       </section>
       <!-- 컴포넌트 -->
-      <section class="primary_workitems">
-        <work-item v-bind:propsdata="$store.state.cloneItems"></work-item>
+      <!-- <section class="primary_workitems"> 
+        <work-item v-bind:propsdata="$store.state.cloneItems" ref="workitemSections"></work-item>
       </section>
       <section class="primary_workitems">
-        <work-item v-bind:propsdata="$store.state.projectItems"></work-item>
+        <work-item v-bind:propsdata="$store.state.projectItems" ref="workitemSections"></work-item>
       </section>
       <section class="primary_workitems">
-        <work-item v-bind:propsdata="$store.state.uiItems"></work-item>
+        <work-item v-bind:propsdata="$store.state.uiItems" ref="workitemSections"></work-item>
+      </section> -->
+      <section class="primary_workitems"> 
+        <work-item v-bind:propsdata="$store.state.workitems" ref="workitemSections"></work-item>
       </section>
       <aside>
-        <div class="to_top">
+        <div class="to_top" v-on:click="toTop">
           <span>TOP</span>
         </div>
       </aside>
@@ -108,9 +111,13 @@
 <script>
 import ToolbarType2 from '../components/ToolbarType2.vue'
 import WorkItem from '../components/WorkItem.vue'
-import Works from '../js/Works.js'
 
 export default {
+  data(){
+    return{
+      count: 0,
+    }
+  },
   components: {
     'toolbar-type2': ToolbarType2,
     WorkItem
@@ -121,13 +128,61 @@ export default {
       console.log(to)
     }
   },
-  mounted(){
-      // console.log(this.$store.state.cloneItems.length)
-      let itemCount = this.$store.state.cloneItems.length + this.$store.state.projectItems.length + this.$store.state.uiItems.length
-      // console.log(itemCount)
-      Works(itemCount) 
-      
+  created(){
+    window.addEventListener('scroll', this.scrollWork);
   },
+  destroyed(){
+    window.removeEventListener('scroll', this.scrollWork);
+  },
+  methods: {
+    quickmenuClick(e){
+      if(e.target.tagName == 'LI')return;
+      let targetClassName = e.target.textContent;
+      let itemCount = this.$store.state.workitems.length;
+      this.$refs.workitemSections.moveWork(targetClassName, itemCount)
+    },
+    toTop(){
+      // 수정필요!!!
+      const html = document.querySelector('html');
+      if(html.scrollTop == 0)return;
+      html.scrollTop = 0;
+      this.$store.state.scrollLocation = html.scrollTop;
+    },
+    scrollWork(){
+      let start;
+      console.log('scroll');
+      let self = this;
+      checkingScroll(self)
+      function checkingScroll(self){
+        clearTimeout(start);
+        start = setTimeout(self.scrollTodo, 150);
+      }
+        
+    },
+    scrollTodo(){
+      // 수정필요!!!
+      const html = document.querySelector('html');
+      let itemCount = this.$store.state.workitems.length;
+      let self = this;
+      scrollTo()
+      function scrollTo(){
+        if(self.$store.state.scrollLocation < html.scrollTop){
+          console.log('증가')
+          console.log(window.innerHeight * itemCount > self.$store.state.scrollLocation)
+          if(!(window.innerHeight * itemCount > self.$store.state.scrollLocation))return;
+          html.scrollTop = window.innerHeight * (self.count + 1);
+          self.$store.state.scrollLocation = html.scrollTop;
+          self.count++;
+        }else if(self.$store.state.scrollLocation > html.scrollTop ){
+          console.log('감소')
+          console.log(self.count)
+          html.scrollTop = window.innerHeight * (self.count - 1);
+          self.$store.state.scrollLocation = html.scrollTop;
+          self.count--;
+        }
+      }
+    },
+  }
 }
 </script>
 
@@ -213,13 +268,13 @@ export default {
   margin: 0 auto;
 }
 aside{
-  width: 100vw;
+  /* width: 100vw;
   min-width: 1440px;
-  max-width: 1440px;
+  max-width: 1440px; */
   position: fixed;
   bottom: 10%;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 92%;
+  /* transform: translateX(-50%); */
   /* border: 1px solid green; */
   /* text-align: right; */
 }

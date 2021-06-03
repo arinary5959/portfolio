@@ -1,6 +1,6 @@
 <template>
-    <div v-for="item in propsdata" v-bind:key="item"  class="workitem">
-        <div v-bind:class="item.name" class="workitem_inner">
+    <div v-for="item in propsdata" v-bind:key="item" class="workitem">
+        <div v-bind:class="item.name" class="workitem_inner" :ref="setItemRef" >
             <div class="workitem_info_wrap">
                 <div class="workitem_text">
                     <strong class="workitem_name">{{ item.name }}</strong>
@@ -20,16 +20,83 @@
 
 <script>
 // import Works from '../js/Works.js'
+import { ref, onBeforeUpdate, onUpdated } from 'vue'
 
 export default {
     props:['propsdata'],
-    // mounted(){
-    //     // console.log(this.$store.state.cloneItems.length)
-    //     let itemCount = this.$store.state.cloneItems.length + this.$store.state.projectItems.length + this.$store.state.uiItems.length
-    //     // console.log(itemCount)
-    //     Works(itemCount) 
+    data(){
+        return{
+            workItemRefs: []
+        }
+    },
+    setup() {
+        let itemRefs = [];
+        const setItemRef = el => {
+            itemRefs.push(el);
+            itemRefs.forEach(itemRefs => {
+                // console.log(itemRefs)
+                itemRefs.style.height = `${window.innerHeight}px`;
+            });
+        }
+        // onBeforeUpdate(() => {
+        //     itemRefs = [];
+        // });
+        // onUpdated(() => {
+        //     console.log(itemRefs);
+        // });
+        // console.log(itemRefs);
+        // const workItemRefs = (itemRefs) =>{
+        //     console.log(itemRefs);
+        //     itemRefs.reduce((res, item )=>{
+        //         return res.push(item)
+        //     }, this.workItemRefs)
+        // }
+        // console.log(workItemRefs)
+        return {
+            itemRefs,
+            setItemRef,
+            // workItemsRefs
+        }
+    },
+    created(){
+        window.addEventListener('resize', this.workItemsHeight);
+    },
+    destroyed(){
+        window.removeEventListener('resize', this.workItemsHeight);
+    },
+    methods:{
+        workItemsHeight(){
+            this.itemRefs.forEach(itemRefs => {
+                itemRefs.style.height = `${window.innerHeight}px`;
+            });
+        },
+        moveWork(targetClassName, itemCount){
+            console.log('moveWork');
+            let self = this;
+            let number;
+            itemLocation()
+            function itemLocation(){
+                for(let i = 0; i < itemCount; i++){
+                    if(self.itemRefs[i].classList.contains(`${targetClassName}`)){
+                        console.log(self.itemRefs[i])
+                        console.log(i)
+                        number = i;
+                    }
+                }
+                return number
+            }
+            
+            console.log(number)
+            console.log(window.innerHeight)
+            // 수정필요!
+            const html = document.querySelector('html');
+            html.scrollTop = window.innerHeight * (number + 1);
+            this.$store.state.scrollLocation = html.scrollTop
+            console.log(this.$store.state.scrollLocation)
+        },
         
-    // },
+    }
+
 }
 </script>
 
