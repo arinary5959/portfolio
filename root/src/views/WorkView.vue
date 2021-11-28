@@ -80,7 +80,7 @@
                   <!-- <router-link to="/work">KaKao.CORP</router-link> -->
                 </li>
                 <li>
-                  <strong>Calculator_구현중</strong>
+                  <strong>DateRange</strong>
                 </li>
               </ul>
             </div>

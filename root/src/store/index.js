@@ -32,7 +32,7 @@ export const store = createStore({
                     contribution: '퍼블리싱 100%',
                     tech:'HTML, CSS, Javascript',
                     imgsrc: require('../assets/workitemvisual/kakaocorp.png'),
-                    href:'https://arinary5959.github.io/navercorp/index.html',
+                    href:'https://arinary5959.github.io/kakaocorp/index.html',
                 },
                 {
                     name: 'Naver.Corp',
@@ -40,7 +40,7 @@ export const store = createStore({
                     contribution: '퍼블리싱 100%',
                     tech:'HTML, CSS, Javascript',
                     imgsrc: require('../assets/workitemvisual/navercorp.png'),
-                    href:'https://arinary5959.github.io/kakaocorp/index.html',
+                    href:'https://arinary5959.github.io/navercorp/index.html',
                 },
             // ],
             // 'projectItems':[
@@ -91,17 +91,17 @@ export const store = createStore({
                     description: '만년 달력 UI, 오늘 날짜 기준으로 여러 해의 날짜정보 표현.',
                     contribution: '퍼블리싱 100%',
                     tech:'Vue(CDN), HTML, CSS, Javascript',
-                    imgsrc: require('../assets/workitemvisual/calendar_1.jpg'),
+                    imgsrc:  require('../assets/workitemvisual/calendar_1.jpg'),
                     href:'https://arinary5959.github.io/calendar/calendar.html',
                 },
                 {
-                    name: 'Calculator_구현중',
-                    description: '계산기 UI 구현. 기본 기능을 갖춘 계산기입니다.',
+                    name: 'DateRange',
+                    description: '날짜 또는 기간 선택 UI 구현.',
                     contribution: '퍼블리싱 100%',
-                    tech:'HTML, CSS, Javascript',
+                    tech:' HTML, CSS, Javascript',
                     imgsrc: '',
-                    href:'https://arinary5959.github.io/calculator/index.html',
-                }
+                    href:'https://arinary5959.github.io/daterangepicker/index.html',
+                },
             // ]
         ]
     }
